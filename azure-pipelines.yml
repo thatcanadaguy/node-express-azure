@@ -26,4 +26,15 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifacts: drop'
-  
+  - task: FortifySCA@6
+    inputs:
+      runBuildTranslate: true
+      applicationType: 'dotnet'
+      fortifyProjects: '**\*.sln'
+      fortifyBuildId: 'test'
+      runFortifyRulepackUpdate: true
+      runFortifyClean: true
+      scaVerbose: true
+      scaDebug: true
+      runFortifyScan: true
+      fortifyScanType: 'Local'
